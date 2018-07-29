@@ -743,7 +743,7 @@ function Chart(options) {
             .append("ul")
             .classed("sub-group", true)
             .attr("style", "display: none");
-            
+
         chart.getData = links
             .append("li")
             .append("a")
@@ -778,6 +778,13 @@ function Chart(options) {
                 .classed("chart-show-embed", true)
                 .text("Compare")
                 .attr("href", chart.distributionURL);
+
+        chart.getChart = links
+            .append("li")
+            .append("a")
+              .classed("chart-show-embed", true)
+              .text('Download')
+              .on("click", chart.downloadChart);
 
         $(chart.actionLinks[0]).hover(function() {
             $(this).find('.sub-group').toggle();
@@ -1329,6 +1336,22 @@ function Chart(options) {
             chart.mapURL = '/data/map/?table='+chart.tableID+'&primary_geo_id='+chart.primaryGeoID+'&geo_ids='+geoIDs.join(',');
             chart.distributionURL = '/data/distribution/?table='+chart.tableID+'&primary_geo_id='+chart.primaryGeoID+'&geo_ids='+geoIDs.join(',');
         }
+    }
+
+    chart.downloadChart = function(){
+
+      var chartOptionsLabelFilter = function(node){
+        return (node.className !== 'action-links tool-group toggle-sub-group');
+       }
+
+      domtoimage.toJpeg(chart.chartContainer.node(), {bgcolor: '#fff', filter: chartOptionsLabelFilter})
+        .then(function (dataUrl) {
+            var link = document.createElement('a');
+            link.download = chart.chartChartTitle + '.jpg';
+            link.href = dataUrl;
+            link.click();
+        });
+        return false;
     }
 
     // ready, set, go
