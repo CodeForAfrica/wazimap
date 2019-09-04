@@ -45,7 +45,7 @@ class DownloadManager(object):
 
             # where the files go, what we'll eventually zip up
             inner_path = os.path.join(temp_path, file_ident)
-            log.info("Generating download in %s %s %s" % (inner_path, file_ident, file_ident.encode('utf-8'))
+            log.info("Generating download in %s %s %s" % (inner_path, file_ident, file_ident.encode('utf-8')))
             os.mkdir(inner_path)
             out_filepath = os.path.join(inner_path, '%s.%s' % (file_ident, fmt))
 
