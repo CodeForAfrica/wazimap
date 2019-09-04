@@ -45,7 +45,7 @@ class DownloadManager(object):
 
             # where the files go, what we'll eventually zip up
             inner_path = os.path.join(temp_path, file_ident)
-            log.info("Generating download in %s" % inner_path)
+            log.info("Generating download in %s %s %s" % (inner_path, file_ident, file_ident.encode('utf-8'))
             os.mkdir(inner_path)
             out_filepath = os.path.join(inner_path, '%s.%s' % (file_ident, fmt))
 
@@ -56,7 +56,7 @@ class DownloadManager(object):
 
             # See http://gis.stackexchange.com/questions/53920/ogr-createlayer-returns-typeerror
             # excel limits worksheet names to 31 chars
-            out_layer = out_data.CreateLayer(str(file_ident)[0:31], srs=out_srs, geom_type=ogr.wkbMultiPolygon)
+            out_layer = out_data.CreateLayer(file_ident[0,31], srs=out_srs, geom_type=ogr.wkbMultiPolygon)
             out_layer.CreateField(ogr.FieldDefn('geo_level', ogr.OFTString))
             out_layer.CreateField(ogr.FieldDefn('geo_code', ogr.OFTString))
             out_layer.CreateField(ogr.FieldDefn('geoid', ogr.OFTString))
