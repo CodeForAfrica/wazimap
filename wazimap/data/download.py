@@ -116,7 +116,7 @@ class DownloadManager(object):
 
             log.info("Zipped. Reading and streaming.")
 
-            with open(zfile_filepath) as f:
+            with open(zfile_filepath, "rb") as f:
                 content = f.read()
                 return content, zfile_filename, 'application/zip'
 
