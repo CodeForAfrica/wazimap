@@ -91,7 +91,7 @@ TEMPLATES = [
 
 
 # CorsMiddleware should be placed as high as possible: https://github.com/adamchainz/django-cors-headers#setup
-MIDDLEWARE = (
+MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,14 +101,14 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'wazimap.middleware.RedirectMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_METHODS = (
+CORS_ALLOW_METHODS = [
     'GET',
     'OPTIONS'
-)
+]
 
 
 # Databases and caches
